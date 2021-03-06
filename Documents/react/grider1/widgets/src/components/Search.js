@@ -21,20 +21,27 @@ const Search = () => {
            console.log(result)
 
        }
-     const timeoutId = setTimeout(()=> {
-           if (term){
-               search()
 
-           }
-       }, 500)
-     return ()=> {clearTimeout(timeoutId)}
+       if (term && !result.length){
+           search()
+       }else {
+           const timeoutId = setTimeout(()=> {
+               if (term){
+                   search()
+
+               }
+           }, 500)
+           return ()=> {clearTimeout(timeoutId)}
+       }
+
+
     }, [term])
 
     const renderResults = result.map((res, i)=> {
         return (
             <div key={res.pageid} className="item">
                 <div className="right floated content">
-                    <a className={'ui button'} href={`https://en.wikipedia.org?curid=${res.pageid}`} target="_blank">Go</a>
+                    <a className={'ui button'} href={`https://en.wikipedia.org?curid=${res.pageid}`}>Go</a>
                 </div>
                 <div className="content">
                     <div className="header">
