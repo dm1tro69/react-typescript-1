@@ -32,12 +32,12 @@ const CodeEditor: React.FC<CodeEditorProps> = ({onChange, initialValue}) => {
             useTabs: false,
             semi: true,
             singleQuote: true
-        })
+        }).replace(/\n$/, '')
         editorRef.current.setValue(formatted)
     }
 
     return (
-        <div>
+        <div className={'editor-wrapper'}>
             <button className={'button button-format is-primary is-small'} onClick={onFormatClick}>Format</button>
         <MonacoEditor
             options={{
