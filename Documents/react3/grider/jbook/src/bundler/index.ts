@@ -11,6 +11,7 @@ const bundle = async (rawCode: string)=> {
             wasmURL: 'https://unpkg.com/esbuild-wasm@0.8.27/esbuild.wasm',
         });
     }
+   try {
 
    const result = await service.build({
         entryPoints: ['index.js'],
@@ -22,6 +23,17 @@ const bundle = async (rawCode: string)=> {
             global: 'window',
         },
     });
-   return result.outputFiles[0].text;
+       return {
+           code: result.outputFiles[0].text,
+           err: ''
+       }
+
+   }catch (e) {
+      return {
+          err: e.message,
+          code: ''
+      }
+   }
+
 }
 export default bundle
