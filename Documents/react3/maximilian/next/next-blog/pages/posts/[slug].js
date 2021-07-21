@@ -1,9 +1,10 @@
+import PostContent from "../../components/posts/post-content";
 
 const SinglePostPage = () => {
     return (
-        <div>
-            <h1>SinglePostPage</h1>
-        </div>
+        <>
+            <PostContent/>
+        </>
     );
 };
 
